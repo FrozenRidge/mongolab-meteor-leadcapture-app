@@ -1,1 +1,74 @@
-/* CSS declarations go here */
+body{
+  background-color:#31373c;
+  color:#fff;
+  font-family:helvetica, arial, sans;
+  margin:0; padding:0;
+  font-size:1.1em;
+}
+
+
+h1, h2, h3, h4 {
+  font-family: Raleway;
+}
+
+.header{
+  width:100%;
+  background-color:#39c;
+  text-align:center;
+  padding:2em;
+  margin:0;
+  margin-bottom:1em;
+}
+
+.content{
+  margin:0 auto;
+  width:30em;
+  padding:2em;
+  font-weight:light;
+  text-align:center;
+}
+
+.footer{
+  background-color:#3e464d;
+}
+.footer a{
+  color:#2686c6;
+  text-decoration:none;
+  position:fixed;
+  bottom:0;
+  width:40em;
+  margin:0 auto;
+  font-size:50%;
+}
+
+form{
+  width:30em;
+  position:relative;
+}
+
+input{
+  border-radius:2px 0 0 2px;
+  width: 80%;
+}
+button{
+ background-color:#39c;
+ color:#fff;
+}
+
+button:hover{
+  background-color: #85cdf2;
+  cursor:pointer;
+}
+
+input, button{
+  padding:8px 10px;
+  line-height: normal !important;
+  border:none;
+  margin:0;
+  vertical-align:middle;
+  font-size:20px;
+  -moz-box-sizing: content-box; /* or `border-box` */
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  }
+

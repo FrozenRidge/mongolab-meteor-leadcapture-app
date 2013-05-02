@@ -1,13 +1,24 @@
 <head>
-  <title>app</title>
+  <title>FrozenRidge | Newsletter</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-  {{> hello}}
+  <div class='header'>
+    <img src = "./logo.png" />
+  </div>
+  <div class='content'>
+    <h1>Sign up for our newsletter</h1>
+    <p>We'd love to stay in touch with you &mdash; leave us your email and we'll keep you
+    up to date...</p>
+    <form>
+      <input id="email"><button>&gt;</button>
+    </form>
+  </div>
+  <div class='footer'>
+    <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
+  </div>
+
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
-</template>
