@@ -62,4 +62,13 @@ Fibers can be installed with the command
 ## Running the Meteor App with MongoLab
 
 Now your Meteor application is ready to run. There are a number of
-configuration options which can be set at start-time via UNIX environment variables
+configuration options which can be set at start-time via UNIX environment
+variables. 
+
+In order to have you Meteor application persist data to your MongoLab database, set MONGO_URL environment variable:
+
+`export MONGO_URL=mongodb://user:password@foo.mongolab.com/db`
+
+To run your Meteor application, simply execute `main.js`:
+
+`node main.js`
