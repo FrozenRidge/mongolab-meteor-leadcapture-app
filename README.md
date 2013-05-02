@@ -9,3 +9,23 @@ This is a simple lead form / CRM for a website. There will be two views:
 * Admin view - tablular view of leads
 
 Views will utilize Meteor to update live, in realtime. Backend will be MongoLab.
+
+
+## Usage
+
+You need to have meteor installed:
+
+`curl https://install.meteor.com | sh`
+
+Now run the app from the `app` directory:
+
+`cd app; meteor`
+
+You should be able to access the app at http://localhost:3000/
+
+```
+$ meteor
+[[[[[ ~/projects/node/mongolab-meteor-sample/app ]]]]]
+
+=> Meteor server running on: http://localhost:3000/
+```
