@@ -1,10 +1,12 @@
 if (Meteor.isClient) {
 
   Template.signup.events({
-    'click button' : function () {
+    'submit form' : function () {
       // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
+      if (typeof console !== 'undefined') {
         console.log("You pressed the button");
+        return false;
+      }
     }
   });
 }
