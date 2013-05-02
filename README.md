@@ -29,3 +29,20 @@ $ meteor
 
 => Meteor server running on: http://localhost:3000/
 ```
+
+## Bundling
+
+To deploy this so it can run with MongoLab, you need to generate the "bundle":
+
+`meteor bundle sample.tar.gz`
+
+This generates a tarball named `sample.tar.gz` which is essentially the meteor
+app compiled to Node.JS.
+
+This can then be run just like a normal Node.JS app (`npm install`, `npm
+start`). The MongoLab database can be used by setting environment variable
+`MONGODB_URI`.
+
+## Blog Post
+
+The blog post is in [blogpost.md](https://github.com/frozenridge/mongolab-meteor-sample/blob/master/blogpost.md)
