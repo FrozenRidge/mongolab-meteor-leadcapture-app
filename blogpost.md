@@ -5,8 +5,8 @@ applications in JavaScript. It works very nicely with MongoDB - a JSON database
 which gives you storage that's idiomatic for JavaScript. When hosting, you can
 easily use [MongoLab](http://mongolab.com) as your backend MongoDB provider.
 
-To demonstrate Meteor working with MongoLab, we walk you though building a lead
-capture web application with persistance to MongoLab. 
+To demonstrate Meteor working with MongoLab, we'll walk you though building a lead
+capture web application with persistance to MongoLab.
 
 Since MongoDB is a document-oriented database, it is very easy to modify the
 application to store any data you want. In our example, we are building this as
@@ -19,22 +19,25 @@ additional fields like phone number, full name etc.
 
 Our newsletter signup app will consist of two views:
 
-* User-facing landing page for people to enter their email address.
-* Internal-facing page with tabular display of signups and other metadata such as timestamp, referrer.
+* A user-facing landing page for people to enter their email address.
+* An internal-facing page with tabular display of signups and other metadata such as timestamp, referrer.
 
 ## Landing Page Template
 
-First we need a nice HTML page for the landing page. Meteor client-side
-templates consist of mustache ...
+First we need a nice HTML page for the landing page. At the moment, Meteor only supports
+handlebars for templating. It's worth noting that everything must be specified in template tags -
+Meteor will render everything else immediately. This enforces thinking of your app as a series of
+_views_ rather than a series of pages.
 
-This lives in file blah blah
+-- Code: App.html --
+
+
+
 
 ## Data Display Table
 
-For the internal-facing page with the tabular data, we need another HTML
-template. Meteor will update this for us in realtime as signups are submitted.
-
-This lives in file blah blah
+As you can see above, both the signup pane and the data display are defined within template tags. The
+data display table is simply a handlebars table 
 
 ## Static Resources
 
