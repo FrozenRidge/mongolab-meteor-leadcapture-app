@@ -47,3 +47,19 @@ data to MongoDB. Our newsletter signup just has to publish the signups collectio
 for the data display view to be notified of its contents and updates in real-time.
 
 This lives in file blah blah
+
+
+## Deploying the Meteor App
+
+For deployment, Meteor apps are translated to Node.JS applications using the
+`meteor bundle` command. This will output a tarball archive. To run this
+application, uncompress it and install its only dependency - `fibers`.
+
+Fibers can be installed with the command
+
+`npm install fibers@1.0.0`
+
+## Running the Meteor App with MongoLab
+
+Now your Meteor application is ready to run. There are a number of
+configuration options which can be set at start-time via UNIX environment variables
