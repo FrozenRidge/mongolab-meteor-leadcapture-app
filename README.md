@@ -42,3 +42,7 @@ app compiled to Node.JS.
 This can then be run just like a normal Node.JS app (`npm install`, `npm
 start`). The MongoLab database can be used by setting environment variable
 `MONGODB_URI`.
+
+## Blog Post
+
+The blog post is in [blogpost.md](https://github.com/frozenridge/mongolab-meteor-sample/blob/master/blogpost.md)
