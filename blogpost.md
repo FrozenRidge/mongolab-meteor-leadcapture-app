@@ -40,13 +40,32 @@ This lives in file blah blah
 
 Static resources (CSS, images, etc) live in the blah blah public folder to be accessible at the root of the HTTP server.
 
-## Server-side
+
+## Client-side Code
+
+The client-side code in our application lives in the file blah.js and is quite simple. For the user-facing landing page, we merely need to insert data to the MongoDB collection when the form is submitted:
+
+```javascript
+// XXX Code
+```
+
+For the Admin view, we need to render the template from the data in the leads collection:
+
+```javascript
+// XXX Code
+```
+
+## Server-side Code
 
 Meteor makes it super easy to handle the server-side component and marshalling
 data to MongoDB. Our newsletter signup just has to publish the signups collection
 for the data display view to be notified of its contents and updates in real-time.
 
 This lives in file blah blah
+
+```javascript
+// XXX code
+```
 
 
 ## Deploying the Meteor App
