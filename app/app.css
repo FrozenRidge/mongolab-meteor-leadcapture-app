@@ -72,3 +72,19 @@ input, button{
   box-sizing: content-box;
   }
 
+
+.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    opacity: .4;
+    z-index: 1;
+}
+
+
+.error {
+  color:#f47e67;
+}

@@ -36,8 +36,7 @@ _views_ rather than a series of pages.
 
 ## Data Display Table
 
-As you can see above, both the signup pane and the data display are defined within template tags. The
-data display table is simply a handlebars table 
+As you can see above, both the signup pane and the data display are defined within template tags. The data display table is simply a handlebars table that we'll populate with data from the database - this introduces a Meteor philosophy: everything 
 
 ## Static Resources
 

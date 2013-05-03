@@ -19,12 +19,21 @@
 
 
 <template name = "signup">
+  {{#if emailSubmitted }}
+    <h1>Thanks for signing up!</h1>
+  {{else }}
   <h1>Sign up for our newsletter</h1>
-  <p>We'd love to stay in touch with you &mdash; leave us your email and we'll keep you
-  up to date...</p>
-  <form>
-    <input id="email"><button>&gt;</button>
+    <p>We'd love to stay in touch with you &mdash; leave us your email and we'll keep you
+    up to date...</p>
+    <form>
+      {{#if showBadEmail}}
+        {{> badEmail}}
+      {{/if}}
+      <input id="email"><button>&gt;</button>
+  {{/if}}
   </form>
+
+
 </template>
 
 
@@ -36,4 +45,11 @@
       <tr><td>{{ email }}</td><td>{{ referrer }}</td></tr>
     {{/each }}
   </table>
+</template>
+
+
+<template name="badEmail">
+  <div class="error">
+    <p>That's not a real email address...</p>
+  </div>
 </template>
