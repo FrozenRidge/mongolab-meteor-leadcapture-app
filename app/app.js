@@ -3,6 +3,13 @@ Emails = new Meteor.Collection("emails")
 EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 if (Meteor.isClient) {
+  Template.footer.events({
+    'click .login' : function(evt, tmpl){
+      console.log("Login")
+      Meteor.loginWithGithub();
+      return false;
+    }
+   })
 
   Template.signup.events({
     'submit form' : function (evt, tmpl) {
@@ -12,11 +19,9 @@ if (Meteor.isClient) {
 
       if (EMAIL_REGEX.test(email)){
         Session.set("showBadEmail", false);
-        Session.set("emailSubmitted", true);
-        console.log(doc);
         Emails.insert(doc);
+        Session.set("emailSubmitted", true);
       } else {
-        console.log("Bad email", email)
         Session.set("showBadEmail", true);
       }
       return false;
