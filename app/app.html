@@ -20,6 +20,9 @@
 <template name = "footer">
   <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
   | {{loginButtons}}
+  {{#if isAdmin}}
+   You are an admin!
+  {{/if}}
 </template>
 
 <template name = "signup">
