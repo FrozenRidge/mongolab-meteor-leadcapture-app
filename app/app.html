@@ -9,7 +9,7 @@
     <img src = "./logo.png" />
   </div>
   <div class='content'>
-    {{> signup }}
+    {{> main }}
   </div>
   <div class='footer'>
     {{> footer }}
@@ -17,12 +17,20 @@
 
 </body>
 
+<template name = "main">
+ {{#if showAdmin}}
+    {{> admin}}
+ {{else}}
+    {{> signup}}
+ {{/if}}
+</template>
+
 <template name = "footer">
   <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
-  | {{loginButtons}}
   {{#if isAdmin}}
-   You are an admin!
+  | <a href = "#" class = "admin">toggle admin</a>
   {{/if}}
+  | {{loginButtons}}
 </template>
 
 <template name = "signup">
@@ -47,9 +55,9 @@
 <template name = "admin">
   <h1>Signed up Customers</h1>
   <table>
-    <tr><th>Customer Email</th><th>Referrer</th></tr>
-    {{#each customer}}
-      <tr><td>{{ email }}</td><td>{{ referrer }}</td></tr>
+    <tr><th>Customer Email</th><th>Referrer</th><th>Time</th></tr>
+    {{#each emails}}
+      <tr><td>{{ this.email }}</td><td>{{ this.referrer }}</td><td>{{ this.timestamp }}</td></tr>
     {{/each }}
   </table>
 </template>

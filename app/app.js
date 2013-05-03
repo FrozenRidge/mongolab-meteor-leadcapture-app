@@ -4,27 +4,26 @@ EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@(
 
 // Github account usernames of admin users
 var ADMIN_USERS = ['niallo', 'peterbraden'];
-
 function isAdmin() {
   try {
-    console.dir(Meteor.user())
-    return Meteor.user().username in ADMIN_USERS;
+    return ADMIN_USERS.indexOf(Meteor.user().services.github.username) !== -1
   } catch(e) {
-    console.log("exception: " + e);
     return false;
   }
 }
 
 if (Meteor.isClient) {
-  Meteor.autosubscribe(function() {
-    Meteor.subscribe('userData', null, function() { console.log("foo") });
-    Meteor.subscribe('allUserData', null, function() { console.log("foo") });
-  })
+
+  Meteor.subscribe('userData');
+  Meteor.subscribe('emails');
   Template.footer.events({
     'click .login' : function(evt, tmpl){
-      console.log("Login")
       Meteor.loginWithGithub();
       return false;
+    },
+
+    'click .admin' : function(evt, tmpl){
+      Session.set("showAdmin", !Session.get("showAdmin"));
     }
    })
 
@@ -32,7 +31,7 @@ if (Meteor.isClient) {
     'submit form' : function (evt, tmpl) {
 
       var email = tmpl.find('input').value
-        , doc = {email: email, referrer: document.referrer}
+      , doc = {email: email, referrer: document.referrer, timestamp: new Date()}
 
       if (EMAIL_REGEX.test(email)){
         Session.set("showBadEmail", false);
@@ -55,19 +54,26 @@ if (Meteor.isClient) {
 
   Template.footer.isAdmin = isAdmin;
 
-  Template.admin
+  Template.main.showAdmin = function() {
+    return Session.get("showAdmin");
+  };
+
+  Template.admin.emails = function() {
+    return Emails.find().fetch();
+  };
+
 }
 
 if (Meteor.isServer) {
   Meteor.publish("userData", function () {
-    console.log("userData")
     return Meteor.users.find({_id: this.userId},
-        {fields: {'services.github.username': 1, 'username':1}});
+      {fields: {'services.github.username': 1, 'username':1}});
   });
-  Meteor.publish("allUserData", function () {
-    console.log("alluserData")
-    return Meteor.users.find({_id: this.userId},
-        {fields: {'services.github.username': 1, 'username':1}});
+
+  Meteor.publish("emails", function() {
+    if (isAdmin) {
+      return Emails.find();
+    }
   });
   Meteor.startup(function () {
   });
