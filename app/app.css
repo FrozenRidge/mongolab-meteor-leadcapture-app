@@ -88,3 +88,15 @@ input, button{
 .error {
   color:#f47e67;
 }
+
+
+table{
+  border:1px solid #fff;
+  padding:2em;
+  margin:2em auto;
+}
+
+table td{
+  border-bottom:1px solid #3e464d;
+  padding:1em;
+}
