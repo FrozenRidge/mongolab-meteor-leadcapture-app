@@ -5,8 +5,8 @@ applications in JavaScript. It works very nicely with MongoDB - a JSON database
 which gives you storage that's idiomatic for JavaScript. When hosting, you can
 easily use [MongoLab](http://mongolab.com) as your backend MongoDB provider.
 
-To demonstrate Meteor working with MongoLab, we'll walk you though building a lead
-capture web application with persistance to MongoLab.
+To demonstrate Meteor working with MongoLab, we'll walk you though building a
+lead capture web application with persistance to MongoLab.
 
 Since MongoDB is a document-oriented database, it is very easy to modify the
 application to store any data you want. In our example, we are building this as
@@ -20,14 +20,16 @@ additional fields like phone number, full name etc.
 Our newsletter signup app will consist of two views:
 
 * A user-facing landing page for people to enter their email address.
-* An internal-facing page with tabular display of signups and other metadata such as timestamp, referrer.
+* An internal-facing page with tabular display of signups and other metadata
+  such as timestamp, referrer.
 
 ## Landing Page Template
 
-First we need a nice HTML page for the landing page. At the moment, Meteor only supports
-handlebars for templating. It's worth noting that everything must be specified in template tags -
-Meteor will render everything else immediately. This enforces thinking of your app as a series of
-_views_ rather than a series of pages.
+First we need a nice HTML page for the landing page. At the moment, Meteor only
+supports handlebars for templating. It's worth noting that everything must be
+specified in template tags - Meteor will render everything else immediately.
+This enforces thinking of your app as a series of _views_ rather than a series
+of pages.
 
 -- Code: App.html --
 
@@ -36,38 +38,72 @@ _views_ rather than a series of pages.
 
 ## Data Display Table
 
-As you can see above, both the signup pane and the data display are defined within template tags. The data display table is simply a handlebars table that we'll populate with data from the database - this introduces a Meteor philosophy: everything 
+As you can see above, both the signup pane and the data display are defined
+within template tags. The data display table is simply a handlebars table that
+we'll populate with data from the database - meteor likes to live update data -
+that means if you specify your templates in terms of data accessors, when the
+underlying data changes, so will the dom reflect the changes.
+
+This is a pretty different approach to a typical framework where you have to
+manually specify that a view needs to refresh. Personally I find it a little too
+magical - I like to have more control of my templating - but there are plenty of
+reasons the meteor team have taken this approach.
 
 ## Static Resources
 
-Static resources (CSS, images, etc) live in the blah blah public folder to be accessible at the root of the HTTP server.
+Static resources (CSS, images, etc) live in the blah blah public folder to be
+accessible at the root of the HTTP server.
 
 
 ## Client-side Code
 
-The client-side code in our application lives in the file blah.js and is quite simple. For the user-facing landing page, we merely need to insert data to the MongoDB collection when the form is submitted:
+Because Meteor shares code between the client and the server, both client and server
+code is contained in app.js - you can see that we can add client specific code by
+testing Meteor.isClient:
 
 ```javascript
-// XXX Code
+if (Meteor.isClient) {
+  ...
+}
 ```
 
-For the Admin view, we need to render the template from the data in the leads collection:
+ For the user-facing landing page, we merely need to insert data to the
+MongoDB collection when the form is submitted. We thus bind to the form submit
+event and check to see if the email appears to be valid. If so, we insert it
+into the data model.
 
-```javascript
-// XXX Code
-```
+One of the nice things about Meteor is that the client and server side data model
+API's are the same - so if we insert the data here it is transparently synced with
+our servers database.
+
+This becomes even more powerful because we have configured our app to use MongoLab
+as it's persistent data store. This means that we can use any MongoDB client to
+also connect to the database and use this data - me may link up newsletter software
+to this to make use of our email database for example.
+
+MongoLab is a great service that ameliorates the pain of running your own database,
+you can sign up for an account <a href = "https://mongolab.com/signup?referrer=frozenridge">here</a>.
+
+
+
+
+```javascript // XXX Code ```
+
+For the Admin view, we need to render the template from the data in the leads
+collection:
+
+```javascript // XXX Code ```
 
 ## Server-side Code
 
 Meteor makes it super easy to handle the server-side component and marshalling
-data to MongoDB. Our newsletter signup just has to publish the signups collection
-for the data display view to be notified of its contents and updates in real-time.
+data to MongoDB. Our newsletter signup just has to publish the signups
+collection for the data display view to be notified of its contents and updates
+in real-time.
 
 This lives in file blah blah
 
-```javascript
-// XXX code
-```
+```javascript // XXX code ```
 
 
 ## Deploying the Meteor App
@@ -86,7 +122,8 @@ Now your Meteor application is ready to run. There are a number of
 configuration options which can be set at start-time via UNIX environment
 variables. 
 
-In order to have you Meteor application persist data to your MongoLab database, set MONGO_URL environment variable:
+In order to have you Meteor application persist data to your MongoLab database,
+set MONGO_URL environment variable:
 
 `export MONGO_URL=mongodb://user:password@foo.mongolab.com/db`
 
