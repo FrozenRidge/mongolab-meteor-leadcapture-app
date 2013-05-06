@@ -31,9 +31,7 @@ specified in template tags - Meteor will render everything else immediately.
 This enforces thinking of your app as a series of _views_ rather than a series
 of pages.
 
--- Code: App.html --
-
-
+<script src="http://gist-it.appspot.com/github/FrozenRidge/mongolab-meteor-sample/blob/master/app/app.html"></script>
 
 
 ## Data Display Table
@@ -48,11 +46,6 @@ This is a pretty different approach to a typical framework where you have to
 manually specify that a view needs to refresh. Personally I find it a little too
 magical - I like to have more control of my templating - but there are plenty of
 reasons the meteor team have taken this approach.
-
-## Static Resources
-
-Static resources (CSS, images, etc) live in the blah blah public folder to be
-accessible at the root of the HTTP server.
 
 
 ## Client-side Code
@@ -83,8 +76,6 @@ to this to make use of our email database for example.
 
 MongoLab is a great service that ameliorates the pain of running your own database,
 you can sign up for an account <a href = "https://mongolab.com/signup?referrer=frozenridge">here</a>.
-
-
 
 
 ```javascript // XXX Code ```
