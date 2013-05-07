@@ -152,6 +152,7 @@ function isAdmin() {
     return false;
   }
 }
+```
 
 Meteor makes it very easy to add a "login with Github" UI flow to your
 application once with `accounts` and `accounts-ui` packages. You can
