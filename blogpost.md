@@ -183,9 +183,29 @@ data to MongoDB. Our newsletter signup just has to publish the signups
 collection for the data display view to be notified of its contents and updates
 in real-time.
 
-This lives in file blah blah
+The entire server-side component of our Meteor application consists of:
 
-```javascript // XXX code ```
+```javascript
+if (Meteor.isServer) {
+  Meteor.publish("userData", function () {
+    return Meteor.users.find({_id: this.userId},
+      {fields: {'services.github.username': 1, 'username':1}});
+  });
+
+  Meteor.publish("emails", function() {
+    if (isAdmin) {
+      return Emails.find();
+    }
+  });
+}
+```
+
+With a unified data model between client and server,
+[`Meteor.publish`](http://docs.meteor.com/#publishandsubscribe) is how you make
+certain sets of server-side data available to clients. In our case, we which to
+make the Github username available in the current user object. We also only
+wish to publish the emails MongoDB collection to admin users for security
+reasons.
 
 ## Data Display Table
 
