@@ -105,7 +105,7 @@ application, uncompress it and install its only dependency - `fibers`.
 
 Fibers can be installed with the command
 
-`npm install fibers@1.0.0`
+`npm install fibers`
 
 ## Running the Meteor App with MongoLab
 
@@ -114,10 +114,16 @@ configuration options which can be set at start-time via UNIX environment
 variables. 
 
 In order to have you Meteor application persist data to your MongoLab database,
-set MONGO_URL environment variable:
+set `MONGO_URL` environment variable:
 
 `export MONGO_URL=mongodb://user:password@foo.mongolab.com/db`
 
-To run your Meteor application, simply execute `main.js`:
+For Meteor to correctly set up authentication with Github, you need to set the ROOT_URL environment variable:
 
-`node main.js`
+`export ROOT_URL=http://localhost:8080`
+
+To run your Meteor application on port 8080, simply execute `main.js`:
+
+`PORT=8080 node main.js`
+
+You should now be able to connect to it at http://localhost:8080
