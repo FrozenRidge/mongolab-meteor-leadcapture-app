@@ -127,18 +127,56 @@ mailmerge software to make use of our email database for example.
 MongoLab is a great service that removes the pain of running your own database,
 you can sign up for an account <a href = "https://mongolab.com/signup?referrer=frozenridge">here</a>.
 
-### C
+### Auth for Viewing Emails
 
-Unlike some other templating systems, Meteor templates are not explicitly rendered. Instead, they are
+Now that we've got our newsletter signup form working, we will want to be able to
+see a list of emails in the database. However, because this is sensitive information, 
+we don't want it to be publicly visible. We only want a select list of authenticated users
+to be able to see it.
+
+Fortunately, Meteor makes it easy to add authentication to your application. For demonstration purposes,
+we are piggy-backing off our Github accounts via OAuth2. We don't want to create additional passwords just
+to view newsletter signups. Instead, we'll consider a hardcoded list of Github usernames to view the admin page:
+
+```javascript
+
+// Github account usernames of admin users
+var ADMIN_USERS = ['niallo', 'peterbraden'];
 
 
+// Is the current user an admin
+function isAdmin() {
+  try {
+    return ADMIN_USERS.indexOf(Meteor.user().services.github.username) !== -1
+  } catch(e) {
+    return false;
+  }
+}
+
+Meteor makes it very easy to add a "login with Github" UI flow to your
+application once with `accounts` and `accounts-ui` packages. You can
+add these with the command:
+
+`meteor add accounts-ui accounts-github`
+
+Once these are added to your app, you can render a "log in with Github" button
+in your templates by adding the special template variable `{{loginButtons}}`.
+For example in our finished app we have:
+
+```html
+<template name = "footer">
+  <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
+  {{#if isAdmin}}
+  | <a href = "#" class = "admin">toggle admin</a>
+  {{/if}}
+  | {{loginButtons}}
+</template>
 
 
-For the Admin view, we need to render the template from the data in the leads
-collection:
+```
 
-```javascript // XXX Code ```
 
+```
 ## Server-side Code
 
 Meteor makes it super easy to handle the server-side component and marshalling
