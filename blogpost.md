@@ -72,6 +72,8 @@ JavaScript function `Template.main.showAdmin` in the client-side code. In our
   };
 ```
 
+Due to Meteor's data bindings, when the session variable `showAdmin` is set to `true`, the "admin" template will be rendered. Otherwise, the "signup"
+template will be rendered. Meteor doesn't have to be explicitly told to switch the views - it will update automatically when the value changes.
 
 This brings us to the client-side code.
 
@@ -117,16 +119,20 @@ One of the nice things about Meteor is that the client and server side data
 model API's are the same - so if we insert the data here in the client, it is
 transparently synced with the server and persisted to MongoDB.
 
-This becomes even more powerful because we have configured our app to use MongoLab
-as it's persistent data store. This means that we can use any MongoDB client to
-also connect to the database and use this data - me may link up newsletter software
-to this to make use of our email database for example.
+This becomes even more powerful because we have configured our app to use
+MongoLab as it's persistent data store. This means that we can use any MongoDB
+client to also connect to the database and use this data - me may link up
+mailmerge software to make use of our email database for example.
 
 MongoLab is a great service that removes the pain of running your own database,
 you can sign up for an account <a href = "https://mongolab.com/signup?referrer=frozenridge">here</a>.
 
+### C
 
-```javascript // XXX Code ```
+Unlike some other templating systems, Meteor templates are not explicitly rendered. Instead, they are
+
+
+
 
 For the Admin view, we need to render the template from the data in the leads
 collection:
