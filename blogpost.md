@@ -31,6 +31,79 @@ specified in template tags - Meteor will render everything else immediately.
 This enforces thinking of your app as a series of _views_ rather than a series
 of pages.
 
+```html
+<head>
+  <title>FrozenRidge | Newsletter</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <div class='header'>
+    <img src = "./logo.png" />
+  </div>
+  <div class='content'>
+    {{> main }}
+  </div>
+  <div class='footer'>
+    {{> footer }}
+  </div>
+
+</body>
+
+<template name = "main">
+ {{#if showAdmin}}
+    {{> admin}}
+ {{else}}
+    {{> signup}}
+ {{/if}}
+</template>
+
+<template name = "footer">
+  <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
+  {{#if isAdmin}}
+  | <a href = "#" class = "admin">toggle admin</a>
+  {{/if}}
+  | {{loginButtons}}
+</template>
+
+<template name = "signup">
+  {{#if emailSubmitted }}
+    <h1>Thanks for signing up!</h1>
+  {{else }}
+  <h1>Sign up for our newsletter</h1>
+    <p>We'd love to stay in touch with you &mdash; leave us your email and we'll keep you
+    up to date...</p>
+    <form>
+      {{#if showBadEmail}}
+        {{> badEmail}}
+      {{/if}}
+      <input id="email"><button>&gt;</button>
+  {{/if}}
+  </form>
+
+
+</template>
+
+
+<template name = "admin">
+  <h1>Signed up Customers</h1>
+  <table>
+    <tr><th>Customer Email</th><th>Referrer</th><th>Time</th></tr>
+    {{#each emails}}
+      <tr><td>{{ this.email }}</td><td>{{ this.referrer }}</td><td>{{ this.timestamp }}</td></tr>
+    {{/each }}
+  </table>
+</template>
+
+
+<template name="badEmail">
+  <div class="error">
+    <p>That's not a real email address...</p>
+  </div>
+</template>
+```
+
 <script src="http://gist-it.appspot.com/github/FrozenRidge/mongolab-meteor-sample/blob/master/app/app.html"></script>
 
 
