@@ -184,7 +184,7 @@ changes, so will the dom reflect the changes:
 
 
 ```html
-<template name = "admin">
+<template name="admin">
   <h1>Signed up Customers</h1>
   <table>
     <tr><th>Customer Email</th><th>Referrer</th><th>Time</th></tr>
