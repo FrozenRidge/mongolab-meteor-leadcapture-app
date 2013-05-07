@@ -166,9 +166,9 @@ For example in our finished app we have:
 
 ```html
 <template name = "footer">
-  <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
+  <a href="http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
   {{#if isAdmin}}
-  | <a href = "#" class = "admin">toggle admin</a>
+  | <a href="#" class="admin">toggle admin</a>
   {{/if}}
   | {{loginButtons}}
 </template>
