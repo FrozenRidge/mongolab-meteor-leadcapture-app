@@ -172,11 +172,9 @@ For example in our finished app we have:
   | {{loginButtons}}
 </template>
 
-
 ```
 
 
-```
 ## Server-side Code
 
 Meteor makes it super easy to handle the server-side component and marshalling
