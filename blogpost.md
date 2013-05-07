@@ -198,8 +198,17 @@ changes, so will the dom reflect the changes:
 This is a pretty different approach to a typical framework where you have to
 manually specify that a view needs to refresh.
 
-Our Meteor server-side code handles only making the emails collection available
-to the admin users
+We also make it possible for admin users to toggle display of the email list in the app by inverting the value of the "showAdmin" Meteor [session](http://docs.meteor.com/#session) variable:
+
+```javascript
+  Template.footer.events({
+     // ...
+
+    'click .admin' : function(evt, tmpl){
+      Session.set("showAdmin", !Session.get("showAdmin"));
+    }
+   })
+```
 
 ## Server-side Code
 
