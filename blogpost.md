@@ -47,9 +47,7 @@ It's worth noting that everything must be specified in template tags - Meteor
 will render everything else immediately.  This enforces thinking of your app as
 a series of _views_ rather than a series of pages.
 
-Let's look at an example from our finished app to illustrate
-
-For example, our "main" template looks like this:
+Let's look at an example from our finished app to illustrate. We have a "main" template which looks like this:
 
 ```html
 <template name = "main">
@@ -63,7 +61,7 @@ For example, our "main" template looks like this:
 
 The variable `showAdmin` is actually bound to the return value of the
 JavaScript function `Template.main.showAdmin` in the client-side code. In our
-app.js, the implmentation is as follows:
+`app.js`, the implmentation is as follows:
 
 ```javascript
   Template.main.showAdmin = function() {
@@ -71,24 +69,15 @@ app.js, the implmentation is as follows:
   };
 ```
 
-The 
+Data is bound from client-side code to templates through the variable `Template.<name>`. 
 
-## Data Display Table
-
-As you can see above, both the signup pane and the data display (named "admin") are defined
-within template tags. The data display table is simply a handlebars table that
-we'll populate with data from the database - meteor likes to live update data -
-that means if you specify your templates in terms of data accessors, when the
-underlying data changes, so will the dom reflect the changes.
-
-This is a pretty different approach to a typical framework where you have to
-manually specify that a view needs to refresh.
+This brings us to the client-side code.
 
 ## Client-side Code
 
 Because Meteor shares code between the client and the server, both client and server
-code is contained in app.js - you can see that we can add client specific code by
-testing Meteor.isClient:
+code is contained in `app.js` - you can see that we can add client specific code by
+testing `Meteor.isClient`:
 
 ```javascript
 if (Meteor.isClient) {
@@ -96,21 +85,40 @@ if (Meteor.isClient) {
 }
 ```
 
- For the user-facing landing page, we merely need to insert data to the
-MongoDB collection when the form is submitted. We thus bind to the form submit
-event and check to see if the email appears to be valid. If so, we insert it
-into the data model.
+For the user-facing landing page, we merely need to insert data to the MongoDB
+collection when the form is submitted. We thus bind to the form submit event in
+the "signup" template and check to see if the email appears to be valid. If so,
+we insert it into the data model:
 
-One of the nice things about Meteor is that the client and server side data model
-API's are the same - so if we insert the data here it is transparently synced with
-our servers database.
+```javascript
+  Template.signup.events({
+    'submit form' : function (evt, tmpl) {
+
+      var email = tmpl.find('input').value
+      , doc = {email: email, referrer: document.referrer, timestamp: new Date()}
+
+      if (EMAIL_REGEX.test(email)){
+        Session.set("showBadEmail", false);
+        Emails.insert(doc);
+        Session.set("emailSubmitted", true);
+      } else {
+        Session.set("showBadEmail", true);
+      }
+      return false;
+    }
+  });
+```
+
+One of the nice things about Meteor is that the client and server side data
+model API's are the same - so if we insert the data here in the client, it is
+transparently synced with the server and persisted to MongoDB.
 
 This becomes even more powerful because we have configured our app to use MongoLab
 as it's persistent data store. This means that we can use any MongoDB client to
 also connect to the database and use this data - me may link up newsletter software
 to this to make use of our email database for example.
 
-MongoLab is a great service that ameliorates the pain of running your own database,
+MongoLab is a great service that removes the pain of running your own database,
 you can sign up for an account <a href = "https://mongolab.com/signup?referrer=frozenridge">here</a>.
 
 
@@ -131,6 +139,18 @@ in real-time.
 This lives in file blah blah
 
 ```javascript // XXX code ```
+
+## Data Display Table
+
+As you can see above, both the signup pane and the data display (named "admin") are defined
+within template tags. The data display table is simply a handlebars table that
+we'll populate with data from the database - meteor likes to live update data -
+that means if you specify your templates in terms of data accessors, when the
+underlying data changes, so will the dom reflect the changes.
+
+This is a pretty different approach to a typical framework where you have to
+manually specify that a view needs to refresh.
+
 
 
 ## Deploying the Meteor App
