@@ -50,7 +50,7 @@ a series of _views_ rather than a series of pages.
 Let's look at an example from our finished app to illustrate. We have a "main" template which looks like this:
 
 ```html
-<template name = "main">
+<template name="main">
  {{#if showAdmin}}
     {{> admin}}
  {{else}}
