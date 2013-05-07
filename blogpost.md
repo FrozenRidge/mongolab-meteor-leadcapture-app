@@ -175,11 +175,36 @@ For example in our finished app we have:
 
 ```
 
+### Emails View
+
+The data display table is simply a handlebars table that we'll populate with
+data from the database - meteor likes to live update data - that means if you
+specify your templates in terms of data accessors, when the underlying data
+changes, so will the dom reflect the changes:
+
+
+```html
+<template name = "admin">
+  <h1>Signed up Customers</h1>
+  <table>
+    <tr><th>Customer Email</th><th>Referrer</th><th>Time</th></tr>
+    {{#each emails}}
+      <tr><td>{{ this.email }}</td><td>{{ this.referrer }}</td><td>{{ this.timestamp }}</td></tr>
+    {{/each }}
+  </table>
+</template>
+```
+
+This is a pretty different approach to a typical framework where you have to
+manually specify that a view needs to refresh.
+
+Our Meteor server-side code handles only making the emails collection available
+to the admin users
 
 ## Server-side Code
 
 Meteor makes it super easy to handle the server-side component and marshalling
-data to MongoDB. Our newsletter signup just has to publish the signups
+data between MongoDB and the browser. Our newsletter signup just has to publish the signups
 collection for the data display view to be notified of its contents and updates
 in real-time.
 
@@ -206,19 +231,6 @@ certain sets of server-side data available to clients. In our case, we which to
 make the Github username available in the current user object. We also only
 wish to publish the emails MongoDB collection to admin users for security
 reasons.
-
-## Data Display Table
-
-As you can see above, both the signup pane and the data display (named "admin") are defined
-within template tags. The data display table is simply a handlebars table that
-we'll populate with data from the database - meteor likes to live update data -
-that means if you specify your templates in terms of data accessors, when the
-underlying data changes, so will the dom reflect the changes.
-
-This is a pretty different approach to a typical framework where you have to
-manually specify that a view needs to refresh.
-
-
 
 ## Deploying the Meteor App
 
