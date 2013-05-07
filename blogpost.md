@@ -59,7 +59,10 @@ Let's look at an example from our finished app to illustrate. We have a "main" t
 </template>
 ```
 
-The variable `showAdmin` is actually bound to the return value of the
+Data is bound from client-side code to templates through the Meteor template
+API `Template.<name>`. 
+
+Hence, the variable `showAdmin` is actually bound to the return value of the
 JavaScript function `Template.main.showAdmin` in the client-side code. In our
 `app.js`, the implmentation is as follows:
 
@@ -69,7 +72,6 @@ JavaScript function `Template.main.showAdmin` in the client-side code. In our
   };
 ```
 
-Data is bound from client-side code to templates through the variable `Template.<name>`. 
 
 This brings us to the client-side code.
 
@@ -84,6 +86,8 @@ if (Meteor.isClient) {
   ...
 }
 ```
+
+### Inserting Data on Submit
 
 For the user-facing landing page, we merely need to insert data to the MongoDB
 collection when the form is submitted. We thus bind to the form submit event in
