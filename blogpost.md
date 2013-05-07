@@ -23,34 +23,35 @@ Our newsletter signup app will consist of two views:
 * An internal-facing page with tabular display of signups and other metadata
   such as timestamp, referrer.
 
+You can grab the complete source to the finished newsletter signup app on
+Github at
+[FrozenRidge/mongolab-meteor-sample](https://github.com/FrozenRidge/mongolab-meteor-sample)
+
+## Creating a Meteor App
+
+First install Meteor with `curl https://install.meteor.com | sh`
+
+Once Meteor is on your system, you can create an app called `app` with the command:
+
+`meteor create app`
+
+Now you will have a directory named `app` which contains files `app.js`, `app.css` and `app.html`.
+
 ## Landing Page Template
 
-First we need a nice HTML page for the landing page. At the moment, Meteor only
-supports handlebars for templating. It's worth noting that everything must be
-specified in template tags - Meteor will render everything else immediately.
-This enforces thinking of your app as a series of _views_ rather than a series
-of pages.
+First we need a nice HTML page for the landing page. In the Meteor app you just created, your templates are stored in `app.html`.
+
+At the moment, Meteor only supports [handlebars](http://handlebarsjs.com) for templating.
+
+It's worth noting that everything must be specified in template tags - Meteor
+will render everything else immediately.  This enforces thinking of your app as
+a series of _views_ rather than a series of pages.
+
+Let's look at an example from our finished app to illustrate
+
+For example, our "main" template looks like this:
 
 ```html
-<head>
-  <title>FrozenRidge | Newsletter</title>
-
-  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-</head>
-
-<body>
-  <div class='header'>
-    <img src = "./logo.png" />
-  </div>
-  <div class='content'>
-    {{> main }}
-  </div>
-  <div class='footer'>
-    {{> footer }}
-  </div>
-
-</body>
-
 <template name = "main">
  {{#if showAdmin}}
     {{> admin}}
@@ -58,68 +59,30 @@ of pages.
     {{> signup}}
  {{/if}}
 </template>
-
-<template name = "footer">
-  <a href = "http://frozenridge.co">FrozenRidge | Solving hard problems for business</a>
-  {{#if isAdmin}}
-  | <a href = "#" class = "admin">toggle admin</a>
-  {{/if}}
-  | {{loginButtons}}
-</template>
-
-<template name = "signup">
-  {{#if emailSubmitted }}
-    <h1>Thanks for signing up!</h1>
-  {{else }}
-  <h1>Sign up for our newsletter</h1>
-    <p>We'd love to stay in touch with you &mdash; leave us your email and we'll keep you
-    up to date...</p>
-    <form>
-      {{#if showBadEmail}}
-        {{> badEmail}}
-      {{/if}}
-      <input id="email"><button>&gt;</button>
-  {{/if}}
-  </form>
-
-
-</template>
-
-
-<template name = "admin">
-  <h1>Signed up Customers</h1>
-  <table>
-    <tr><th>Customer Email</th><th>Referrer</th><th>Time</th></tr>
-    {{#each emails}}
-      <tr><td>{{ this.email }}</td><td>{{ this.referrer }}</td><td>{{ this.timestamp }}</td></tr>
-    {{/each }}
-  </table>
-</template>
-
-
-<template name="badEmail">
-  <div class="error">
-    <p>That's not a real email address...</p>
-  </div>
-</template>
 ```
 
-<script src="http://gist-it.appspot.com/github/FrozenRidge/mongolab-meteor-sample/blob/master/app/app.html"></script>
+The variable `showAdmin` is actually bound to the return value of the
+JavaScript function `Template.main.showAdmin` in the client-side code. In our
+app.js, the implmentation is as follows:
 
+```javascript
+  Template.main.showAdmin = function() {
+    return Session.get("showAdmin");
+  };
+```
+
+The 
 
 ## Data Display Table
 
-As you can see above, both the signup pane and the data display are defined
+As you can see above, both the signup pane and the data display (named "admin") are defined
 within template tags. The data display table is simply a handlebars table that
 we'll populate with data from the database - meteor likes to live update data -
 that means if you specify your templates in terms of data accessors, when the
 underlying data changes, so will the dom reflect the changes.
 
 This is a pretty different approach to a typical framework where you have to
-manually specify that a view needs to refresh. Personally I find it a little too
-magical - I like to have more control of my templating - but there are plenty of
-reasons the meteor team have taken this approach.
-
+manually specify that a view needs to refresh.
 
 ## Client-side Code
 
