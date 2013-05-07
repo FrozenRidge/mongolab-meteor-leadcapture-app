@@ -221,7 +221,7 @@ set `MONGO_URL` environment variable:
 
 `export MONGO_URL=mongodb://user:password@foo.mongolab.com/db`
 
-For Meteor to correctly set up authentication with Github, you need to set the ROOT_URL environment variable:
+For Meteor to correctly set up authentication with Github, you need to set the `ROOT_URL` environment variable:
 
 `export ROOT_URL=http://localhost:8080`
 
