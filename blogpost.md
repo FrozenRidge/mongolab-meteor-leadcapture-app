@@ -77,7 +77,7 @@ This brings us to the client-side code.
 
 ## Client-side Code
 
-Because Meteor shares code between the client and the server, both client and server
+Since Meteor shares code between the client and the server, both client and server
 code is contained in `app.js` - you can see that we can add client specific code by
 testing `Meteor.isClient`:
 
