@@ -39,8 +39,7 @@ To deploy this so it can run with MongoLab, you need to generate the "bundle":
 This generates a tarball named `sample.tar.gz` which is essentially the meteor
 app compiled to Node.JS.
 
-This can then be run just like a normal Node.JS app (`npm install`, `npm
-start`). A MongoLab database can be used by creating a database at
+This can then be run just like a normal Node.JS app (`npm install fibers && node main.js`). A MongoLab database can be used by creating a database at
 http://mongolab.com and setting the environment variable MONGO_URL to the
 MongoDB URI provided by MongoLab. Sandbox plans that give you .5GB of storage
 are free.
