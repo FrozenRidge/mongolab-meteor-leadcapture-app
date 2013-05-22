@@ -1,14 +1,14 @@
 mongolab-meteor-leadcapture-app
 ===============================
 
-Sample app &amp; blog post for MongoLab / [Meteor](http://meteor.com) integration
+Sample app &amp; blog post for [MongoLab](http://mongolab.com) / [Meteor](http://meteor.com) integration
 
 This is a simple lead form / CRM for a website. There will be two views:
 
 * Entry view - similar to the lead form on [FrozenRidge.co](http://frozenridge.co)
 * Admin view - tablular view of leads
 
-Views will utilize Meteor to update live, in realtime. Backend will be [MongoLab](http://mongolab.com).
+Views will utilize Meteor to update live, in realtime. Backend will be MongoLab.
 
 
 ## Usage
@@ -25,7 +25,7 @@ You should be able to access the app at http://localhost:3000/
 
 ```
 $ meteor
-[[[[[ ~/projects/node/mongolab-meteor-sample/app ]]]]]
+[[[[[ ~/projects/node/mongolab-meteor-leadcapture-app/app ]]]]]
 
 => Meteor server running on: http://localhost:3000/
 ```
@@ -47,4 +47,4 @@ are free.
 
 ## Blog Post
 
-The blog post describing the app is at the [MongoLab blog](http://blog.mongolab.com/foo)
+A blog post with a detailed walkthrough of the app is at the [MongoLab blog](http://blog.mongolab.com/foo)
