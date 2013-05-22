@@ -1,5 +1,5 @@
-mongolab-meteor-sample
-======================
+mongolab-meteor-leadcapture-app
+===============================
 
 Sample app &amp; blog post for MongoLab / Meteor integration
 
@@ -40,9 +40,11 @@ This generates a tarball named `sample.tar.gz` which is essentially the meteor
 app compiled to Node.JS.
 
 This can then be run just like a normal Node.JS app (`npm install`, `npm
-start`). The MongoLab database can be used by setting environment variable
-`MONGODB_URI`.
+start`). A MongoLab database can be used by creating a database at
+http://mongolab.com and setting the environment variable MONGODB_URI to the
+MongoDB URI provided by MongoLab. Sandbox plans that give you .5GB of storage
+are free.
 
 ## Blog Post
 
-The blog post is in [blogpost.md](https://github.com/frozenridge/mongolab-meteor-sample/blob/master/blogpost.md)
+The blog post describing the app is at the [MongoLab blog](http://blog.mongolab.com/foo)
