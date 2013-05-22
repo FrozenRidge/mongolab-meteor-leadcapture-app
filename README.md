@@ -41,7 +41,7 @@ app compiled to Node.JS.
 
 This can then be run just like a normal Node.JS app (`npm install`, `npm
 start`). A MongoLab database can be used by creating a database at
-http://mongolab.com and setting the environment variable MONGODB_URI to the
+http://mongolab.com and setting the environment variable MONGO_URL to the
 MongoDB URI provided by MongoLab. Sandbox plans that give you .5GB of storage
 are free.
 
