@@ -1,14 +1,14 @@
 mongolab-meteor-leadcapture-app
 ===============================
 
-Sample app &amp; blog post for MongoLab / Meteor integration
+Sample app &amp; blog post for MongoLab / [Meteor](http://meteor.com) integration
 
 This is a simple lead form / CRM for a website. There will be two views:
 
-* Entry view - similar to the lead form on FrozenRidge.co
+* Entry view - similar to the lead form on [FrozenRidge.co](http://frozenridge.co)
 * Admin view - tablular view of leads
 
-Views will utilize Meteor to update live, in realtime. Backend will be MongoLab.
+Views will utilize Meteor to update live, in realtime. Backend will be [MongoLab](http://mongolab.com).
 
 
 ## Usage
