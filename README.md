@@ -46,4 +46,4 @@ are free.
 
 ## Blog Post
 
-A blog post with a detailed walkthrough of the app is at the [MongoLab blog](http://blog.mongolab.com/foo)
+A blog post with a detailed walkthrough of the app is at the [MongoLab blog](http://blog.mongolab.com/2013/05/build-your-own-lead-capture-page-with-meteor-and-mongolab-in-minutes/)
