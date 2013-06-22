@@ -1,17 +1,16 @@
 Emails = new Meteor.Collection("emails")
 
 EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-// Github account usernames of admin users
 var ADMIN_USERS = ['niallo', 'peterbraden', 'willshulman'];
-function isAdmin() {
+function isAdmin(userId) {
+  var user = Meteor.users.findOne({_id: this.userId};
   try {
-    return ADMIN_USERS.indexOf(Meteor.user().services.github.username) !== -1
+    return ADMIN_USERS.indexOf(user.services.github.username) !== -1
   } catch(e) {
     return false;
-  }
+ }
 }
-
+  
 if (Meteor.isClient) {
 
   Meteor.subscribe('userData');
@@ -52,7 +51,9 @@ if (Meteor.isClient) {
     return Session.get("emailSubmitted");
   };
 
-  Template.footer.isAdmin = isAdmin;
+  Template.footer.isAdmin = function() {
+    return isAdmin(Meteor.userId())
+  };
 
   Template.main.showAdmin = function() {
     return Session.get("showAdmin");
@@ -65,17 +66,16 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+  
   Meteor.publish("userData", function () {
     return Meteor.users.find({_id: this.userId},
       {fields: {'services.github.username': 1, 'username':1}});
   });
 
   Meteor.publish("emails", function() {
-    if (isAdmin) {
+    if (isAdmin(this.userId)) {
       return Emails.find();
     }
   });
-  Meteor.startup(function () {
-  });
-
 }
+f (is
