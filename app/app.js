@@ -3,7 +3,7 @@ Emails = new Meteor.Collection("emails")
 EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var ADMIN_USERS = ['niallo', 'peterbraden', 'willshulman'];
 function isAdmin(userId) {
-  var user = Meteor.users.findOne({_id: this.userId};
+  var user = Meteor.users.findOne({_id: userId});
   try {
     return ADMIN_USERS.indexOf(user.services.github.username) !== -1
   } catch(e) {
@@ -34,7 +34,7 @@ if (Meteor.isClient) {
 
       if (EMAIL_REGEX.test(email)){
         Session.set("showBadEmail", false);
-        Emails.insert(doc);
+        Meteor.call("insertEmail", doc);
         Session.set("emailSubmitted", true);
       } else {
         Session.set("showBadEmail", true);
@@ -77,5 +77,10 @@ if (Meteor.isServer) {
       return Emails.find();
     }
   });
+  
+  Meteor.methods({
+      insertEmail: function(doc) {
+          Emails.insert(doc);
+      }
+  })
 }
-f (is
